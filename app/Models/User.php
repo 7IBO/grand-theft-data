@@ -18,9 +18,12 @@ class User extends Authenticatable
      * @var string[]
      */
     protected $fillable = [
-        'name',
+        'first_name',
+        'last_name',
         'email',
         'password',
+        'gender',
+        'pokemon_id',
     ];
 
     /**
@@ -41,4 +44,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function pokemon() {
+        return $this->belongsTo(Pokemon::class);
+    }
+
+    public function roles() {
+        return $this->hasMany(UserRole::class);
+    }
 }
