@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('formulaire');
+    return view('connexion');
 });
 
 Route::post('/', [\App\Http\Controllers\UserController::class, 'store']);
