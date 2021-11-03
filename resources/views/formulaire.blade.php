@@ -27,11 +27,9 @@
         <label class="form-label" for="genre"></label>
         <select name="genre" class="form-select" id="genre">
             <option value="male">Homme</option>
-            <option value="male">Femme</option>
+            <option value="female">Femme</option>
             <option value="autre">Autre</option>
         </select>
-        <label class="form-label" for="genre">Autre :</label>
-        <input type="text" name="genre" class="form-control" placeholder="Autre">
 
         <label for="pokemon">Pokémon préféré</label>
         <select name="pokemon" class="form-select" id="pokemon">
