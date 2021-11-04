@@ -8,10 +8,11 @@
     <title>Document</title>
 </head>
 <body class="d-flex justify-content-center align-items-center" style="min-height: 100vh">
+
     <form method="POST">
         @csrf
 
-        <label class="form-label" for="email">Entrez votre Mail :</label>
+        <label class="form-label" for="email">Entrez votre email :</label>
         <input type="email" id="email" name="email" class="form-control" placeholder="Entrez votre email"/>
 
         <label class="form-label" for="password">Mot de passe :</label>

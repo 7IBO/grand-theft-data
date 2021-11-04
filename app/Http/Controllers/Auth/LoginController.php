@@ -17,12 +17,12 @@ class LoginController extends Controller
         if ($user) {
             if (password_verify($request->password, $user->password)) {
                 \Auth::loginUsingId($user->id);
-                return 'test ca marche';
+                return route('index');
             } else {
-                return 'test false';
+                return redirect()->back()->with('error', 'Email et/ou mot de passe incorrect !');
             }
         } else {
-            return 'test false 2';
+            return redirect()->back()->with('error', 'Email et/ou mot de passe incorrect !');
         }
     }
 }
