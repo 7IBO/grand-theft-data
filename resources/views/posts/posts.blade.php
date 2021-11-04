@@ -4,11 +4,12 @@
 
     <div class="container mt-5">
 
-        <div class="d-flex justify-content-end">
-            <a class="btn btn-success mb-4" href="{{route('post.create')}}">    
-                Créer un post
-            </a>
-        </div>
+        <form method="POST" action="{{route('post.create')}}">
+            <textarea class="form-control" placeholder="Qu'avez vous à dire ? "></textarea>
+            <div class="d-flex justify-content-end mt-2">
+                <input type="submit" value="Poster" class="btn btn-success mb-4 col-2"/>
+            </div>
+        </form>
         
         @foreach($posts as $post)
             <div class="card">
@@ -45,6 +46,7 @@
                 @if (count($post->comments) > 3)
                     <span>...</span>
                 @endif
+                
             </div>
         @endforeach
     </div>
