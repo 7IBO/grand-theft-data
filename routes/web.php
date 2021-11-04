@@ -33,5 +33,5 @@ Route::middleware([Authenticate::class])->group(function () {
     Route::get('posts/{id}', [\App\Http\Controllers\PostController::class, 'show'])->name('posts.show');
     Route::post('posts/create', [\App\Http\Controllers\PostController::class, 'create'])->name('post.create');
     Route::post('comment/create', [\App\Http\Controllers\CommentController::class, 'create'])->name('comment.create');
-
+    Route::get('add-friend', [\App\Http\Controllers\friendshipController::class, 'add'])->name('add-friend');
 });
