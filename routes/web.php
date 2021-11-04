@@ -29,4 +29,5 @@ Route::get('test', function () {
 
 Route::get('friends', [\App\Http\Controllers\FriendshipController::class, 'index'])->name('friends');
 Route::get('posts', [\App\Http\Controllers\PostController::class, 'index'])->name('posts');
-Route::get('posts/create', [\App\Http\Controllers\PostController::class, 'create'])->name('post.create');
+Route::post('posts/create', [\App\Http\Controllers\PostController::class, 'create'])->name('post.create');
+Route::post('comment/create', [\App\Http\Controllers\CommentController::class, 'create'])->name('comment.create');

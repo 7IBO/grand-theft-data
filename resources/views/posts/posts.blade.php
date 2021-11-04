@@ -5,7 +5,8 @@
     <div class="container mt-5">
 
         <form method="POST" action="{{route('post.create')}}">
-            <textarea class="form-control" placeholder="Qu'avez vous à dire ? "></textarea>
+            @csrf
+            <textarea name="description" class="form-control" placeholder="Qu'avez vous à dire ? "></textarea>
             <div class="d-flex justify-content-end mt-2">
                 <input type="submit" value="Poster" class="btn btn-success mb-4 col-2"/>
             </div>
@@ -46,7 +47,14 @@
                 @if (count($post->comments) > 3)
                     <span>...</span>
                 @endif
-                
+                <form method="POST" action="{{route('comment.create')}}" class="col-4 mt-2">
+                    @csrf
+                    <textarea name="comment" class="form-control" placeholder="Qu'avez vous à dire ? "></textarea>
+                    <div class="d-flex justify-content-end mt-2">
+                        <input type="hidden" value="{{$post->id}}" name="postid"/>
+                        <input type="submit" value="Poster" class="btn btn-success mb-4 w-100"/>
+                    </div>
+                </form>
             </div>
         @endforeach
     </div>
