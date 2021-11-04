@@ -24,5 +24,9 @@ class RegisterController extends Controller
         $user->pokemon_id = $request->pokemon;
 
         $user->save();
+
+        \Auth::loginUsingId($user->id);
+
+        return redirect()->route('index');
     }
 }

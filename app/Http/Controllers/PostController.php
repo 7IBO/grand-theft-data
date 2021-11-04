@@ -4,12 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use \App\Models\Post;
+use \App\Models\Friendship;
 
 class PostController extends Controller
 {
     public function index(){
-        $posts = Post::orderByDesc('created_at')->get();
-
+        $posts = Post::whereIn('author_id', function($query) {
+            $query->select('addressee_id')->from('friendships')->where('requester_id', \Auth::user()->id)->whereNotNull('accepted_at');
+        })->orWhereIn('author_id', function($query) {
+            $query->select('requester_id')->from('friendships')->where('addressee_id', \Auth::user()->id)->whereNotNull('accepted_at');
+        })->orWhere('author_id', \Auth::user()->id)->orderByDesc('created_at')->get();
+        
         return view('posts.posts',compact('posts'));
     }
 

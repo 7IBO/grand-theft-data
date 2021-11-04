@@ -14,12 +14,16 @@
         </form>
 
         <h4 class="mt-5">Mon fil d'actualité</h4>
+
+        @if (count($posts) == 0)
+            <h6>Aucun post</h6>
+        @endif
         
         @foreach($posts as $post)
             <div class="card mt-4">
                 <div class="card-header">
                     <div class="d-flex justify-content-between">
-                        <span>{{$post->author->first_name}} {{$post->author->last_name}}</span>
+                        <span>{{ $post->author->first_name . " " . $post->author->last_name }} {{ $post->author->id == \Auth::user()->id ? '(moi)' : ''}}</span>
                         <span class="text-secondary">{{$post->created_at}}</span>
                     </div>
                     
@@ -39,11 +43,11 @@
                             <div class="card-body">
                                 @foreach($post->comments->slice(0, 2) as $comment)
                                     <div class="d-flex justify-content-between">
-                                        <span>
+                                        <div>
                                             <b>{{$comment->author->first_name}} {{$comment->author->last_name}} :</b>
                                             {{$comment->content}}
-                                        </span>
-                                        <span class="text-secondary">{{$comment->created_at}}</span>
+                                        </div>
+                                        <div class="text-secondary col-4 text-end">{{$comment->created_at}}</div>
                                     </div>
                                 @endforeach
                                 @if (count($post->comments) > 2)

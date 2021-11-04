@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Friendship;
+use App\Models\User;
 
 class FriendshipController extends Controller
 {
@@ -25,7 +26,20 @@ class FriendshipController extends Controller
             }
         }
 
-
         return redirect()->back();
+    }
+
+    public function store(Request $request) {
+        if ($request->input('email') && User::where('email', $request->input('email'))->first()) {
+            $requesterId = \Auth::user()->id;
+            $addresseeId = User::where('email', $request->input('email'))->first()->id;
+
+            $friendship = new Friendship();
+            $friendship->requester_id = $requesterId;
+            $friendship->addressee_id = $addresseeId;
+            $friendship->save();
+
+            return redirect()->back();
+        }
     }
 }
