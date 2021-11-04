@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->string('gender');
-            $table->foreignId('pokemon_id');
+            $table->foreignId('pokemon_id')->nullable();
             $table->timestamps();
         });
     }

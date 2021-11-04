@@ -14,8 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('index');
-});
+    return redirect()->route('posts');
+})->name('index');
 
 
 Route::get('login', [\App\Http\Controllers\Auth\LoginController::class, 'login'])->name('auth.login');
@@ -24,7 +24,7 @@ Route::get('register', [\App\Http\Controllers\Auth\RegisterController::class, 'r
 Route::post('register', [\App\Http\Controllers\Auth\RegisterController::class, 'store'])->name('auth.register');
 
 Route::get('test', function () {
-    return view('index');
+    return \App\Models\Post::first()->comments;
 });
 Route::get('posts', [\App\Http\Controllers\PostController::class, 'index'])->name('posts');
 Route::get('posts/create', [\App\Http\Controllers\PostController::class, 'create'])->name('post.create');
