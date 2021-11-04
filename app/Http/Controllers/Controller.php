@@ -10,4 +10,12 @@ use Illuminate\Routing\Controller as BaseController;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+
+    public function index() {
+        if (\Auth::guest()) {
+            return redirect()->route('auth.login');
+        } else {
+            return redirect()->route('posts');
+        }
+    }
 }

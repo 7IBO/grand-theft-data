@@ -13,15 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return redirect()->route('posts');
-})->name('index');
+Route::get('/', [\App\Http\Controllers\Controller::class, 'index'])->name('index');
 
 
 Route::get('login', [\App\Http\Controllers\Auth\LoginController::class, 'login'])->name('auth.login');
 Route::post('login', [\App\Http\Controllers\Auth\LoginController::class, 'verify'])->name('auth.login');
 Route::get('register', [\App\Http\Controllers\Auth\RegisterController::class, 'register'])->name('auth.register');
 Route::post('register', [\App\Http\Controllers\Auth\RegisterController::class, 'store'])->name('auth.register');
+Route::post('logout', [\App\Http\Controllers\Auth\LogoutController::class, 'logout'])->name('auth.logout');
 
 Route::get('test', function () {
     return \App\Models\Post::first()->comments;

@@ -24,12 +24,21 @@
             <a class="nav-link" href="{{ route('friends') }}">Amis</a>
           </li>
           
-          <li class="nav-item">
-            <a class="nav-link" href="{{route('auth.login')}}">Connexion</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{route('auth.register')}}">Inscription</a>
-          </li>
+          @if (\Auth::guest())
+            <li class="nav-item">
+              <a class="nav-link" href="{{route('auth.login')}}">Connexion</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{route('auth.register')}}">Inscription</a>
+            </li>
+          @else
+            <form action="logout" method="post">
+              @csrf
+              <li class="nav-item">
+                <input type="submit" class="nav-link bg-transparent" style="border: none;" value="Déconnexion"/>
+              </li>
+            </form>
+          @endif
         </ul>
         <form class="d-flex">
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
