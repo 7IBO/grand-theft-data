@@ -5,7 +5,7 @@
 
 <div class="container mt-5">
 
-<table class="table table-danger mt-3">
+    <table class="table table-danger mt-3">
         <thead>
             <tr>
                 <th>Nom</th>
@@ -51,7 +51,16 @@
             
             @endforeach
         </tbody>
-    
     </table>
 
+
+    <from method="Post" action="">
+        <label>Demander par nom et prenom :</label>
+        <div class="col-sm-10 mt-2">
+            <input type="Text" name="invitenom" placeholder="Entrer un nom" class="form-control"/>
+            <input type="Text" name="inviteprenom" placeholder="Entrer un prenom" class="form-control"/>
+        </div>
+        <input type="submit" class="btn btn-success mt-1 col-3" value="Inviter"/>
+    </from>
+</div>
 @endsection
