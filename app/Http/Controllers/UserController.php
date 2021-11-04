@@ -25,7 +25,8 @@ class UserController extends Controller
 
         if ($user) {
             if (password_verify($request->password, $user->password)) {
-                return 'test ca marche';
+                \Auth::loginUsingId($user->id);
+                return \Auth::user();
             } else {
                 return 'test false';
             }
