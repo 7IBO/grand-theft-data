@@ -26,5 +26,7 @@ Route::post('register', [\App\Http\Controllers\Auth\RegisterController::class, '
 Route::get('test', function () {
     return \App\Models\Post::first()->comments;
 });
+
+Route::get('friends', [\App\Http\Controllers\FriendshipController::class, 'index'])->name('friends');
 Route::get('posts', [\App\Http\Controllers\PostController::class, 'index'])->name('posts');
 Route::get('posts/create', [\App\Http\Controllers\PostController::class, 'create'])->name('post.create');
