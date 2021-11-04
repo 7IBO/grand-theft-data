@@ -18,21 +18,34 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{{ route('index') }}">Accueil</a>
+            <a class="nav-link {{ \Route::current()->getName() == 'index' ? 'active' : '' }}" aria-current="page" href="{{ route('index') }}">
+              Accueil
+            </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{ route('friends') }}">Amis</a>
+            <a class="nav-link {{ \Route::current()->getName() == 'posts' ? 'active' : '' }}" aria-current="page" href="{{ route('posts') }}">
+              Posts
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {{ \Route::current()->getName() == 'friends' ? 'active' : '' }}" href="{{ route('friends') }}">
+              Amis
+            </a>
           </li>
           
           @if (\Auth::guest())
             <li class="nav-item">
-              <a class="nav-link" href="{{route('auth.login')}}">Connexion</a>
+              <a class="nav-link {{ \Route::current()->getName() == 'auth.login' ? 'active' : '' }}" href="{{route('auth.login')}}">
+                Connexion
+              </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{{route('auth.register')}}">Inscription</a>
+              <a class="nav-link {{ \Route::current()->getName() == 'auth.register' ? 'active' : '' }}" href="{{route('auth.register')}}">
+                Inscription
+              </a>
             </li>
           @else
-            <form action="logout" method="post">
+            <form action="{{ route('auth.logout') }}" method="post">
               @csrf
               <li class="nav-item">
                 <input type="submit" class="nav-link bg-transparent" style="border: none;" value="Déconnexion"/>

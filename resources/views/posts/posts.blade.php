@@ -4,16 +4,19 @@
 
     <div class="container mt-5">
 
-        <form method="POST" action="{{route('post.create')}}">
+        <form method="POST" action="{{route('post.create')}}" class="border-bottom">
             @csrf
-            <textarea name="description" class="form-control" placeholder="Qu'avez vous à dire ? "></textarea>
+            <label for="post_create" class="mb-3">Ajouter un post</label>
+            <textarea name="description" class="form-control" id="post_create" placeholder="Qu'avez vous à dire ?" required></textarea>
             <div class="d-flex justify-content-end mt-2">
                 <input type="submit" value="Poster" class="btn btn-success mb-4 col-2"/>
             </div>
         </form>
+
+        <h4 class="mt-5">Mon fil d'actualité</h4>
         
         @foreach($posts as $post)
-            <div class="card">
+            <div class="card mt-4">
                 <div class="card-header">
                     <div class="d-flex justify-content-between">
                         <span>{{$post->author->first_name}} {{$post->author->last_name}}</span>
@@ -21,38 +24,42 @@
                     </div>
                     
                 </div>
-                <div class="card-body">
+                <div class="card-body d-flex justify-content-between">
                     {{$post->description}}
+                    <a href="{{ route('posts.show', $post->id) }}">Accéder au post</a>
                 </div>
             </div>
 
-            <div class="d-flex align-items-end flex-column">
-                @foreach($post->comments->slice(0, 3) as $comment)
+            @if (count($post->comments) > 0)
+                <div class="d-flex align-items-end flex-column">
                     <div class="col-5 mt-2">
                         <div class="card">
-                            <div class="card-header">
-                                <div class="d-flex justify-content-between">
-                                    <span>Commentaire de {{$comment->author->first_name}} {{$comment->author->last_name}}</span>
-                                    <span class="text-secondary">{{$comment->created_at}}</span>
-                                </div>
-                                
-                            </div>
                             <div class="card-body">
-                                {{$comment->content}}
+                                @foreach($post->comments->slice(0, 2) as $comment)
+                                    <div class="d-flex justify-content-between">
+                                        <span>
+                                            <b>{{$comment->author->first_name}} {{$comment->author->last_name}} :</b>
+                                            {{$comment->content}}
+                                        </span>
+                                        <span class="text-secondary">{{$comment->created_at}}</span>
+                                    </div>
+                                @endforeach
+                                @if (count($post->comments) > 2)
+                                    <b>...</b>
+                                @endif
                             </div>
                         </div>
                     </div>
-                @endforeach
+                </div>
+            @endif
 
-                @if (count($post->comments) > 3)
-                    <span>...</span>
-                @endif
-                <form method="POST" action="{{route('comment.create')}}" class="col-4 mt-2">
+            <div class="d-flex align-items-end flex-column">
+                <form method="POST" action="{{route('comment.create')}}" class="col-5 mt-2">
                     @csrf
-                    <textarea name="comment" class="form-control" placeholder="Qu'avez vous à dire ? "></textarea>
-                    <div class="d-flex justify-content-end mt-2">
-                        <input type="hidden" value="{{$post->id}}" name="postid"/>
-                        <input type="submit" value="Poster" class="btn btn-success mb-4 w-100"/>
+                    <input type="hidden" value="{{$post->id}}" name="postid"/>
+                    <div class="d-flex justify-content-between">
+                        <input type="text" name="comment" class="form-control" placeholder="Qu'avez vous à dire ?" required style="width: 62.5%"/>
+                        <input type="submit" value="Poster" class="btn btn-success col-3"/>
                     </div>
                 </form>
             </div>

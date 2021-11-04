@@ -21,4 +21,10 @@ class PostController extends Controller
         $post->save();
         return redirect()->back();
     }
+
+    public function show(int $id) {
+        $post = Post::findOrFail($id);
+
+        return view('posts.show', compact('post'));
+    }
 }
