@@ -51,9 +51,7 @@
                 <input type="submit" class="nav-link bg-transparent" style="border: none;" value="Déconnexion"/>
               </li>
             </form>
-            <li class="nav-item">
-              <span>Favori : {{\Auth::user()->pokemon ? \Auth::user()->pokemon->name :''}}</span>
-            </li>
+            <span class="navbar-text">Favori : {{\Auth::user()->pokemon ? \Auth::user()->pokemon->name :''}}</span>
           @endif
           
         </ul>
