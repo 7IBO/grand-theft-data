@@ -13,16 +13,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('login', function () {
-    return view('connexion');
-});
-
 Route::get('/', function () {
-    return view('formulaire');
+    return view('index');
 });
 
-Route::post('/', [\App\Http\Controllers\UserController::class, 'store']);
-Route::post('login', [\App\Http\Controllers\UserController::class, 'login']);
+
+Route::get('login', [\App\Http\Controllers\Auth\LoginController::class, 'login'])->name('auth.login');
+Route::post('login', [\App\Http\Controllers\Auth\LoginController::class, 'verify'])->name('auth.login');
+Route::get('register', [\App\Http\Controllers\Auth\RegisterController::class, 'register'])->name('auth.register');
+Route::post('register', [\App\Http\Controllers\Auth\RegisterController::class, 'store'])->name('auth.register');
 
 Route::get('test', function () {
     return view('index');
