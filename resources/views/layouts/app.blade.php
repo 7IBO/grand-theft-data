@@ -62,5 +62,13 @@
   </nav>
 
     @yield('content')
+
+  <footer class="bg-light text-center text-secondary mt-5">
+
+    <div class="text-center p-3">
+      © 2020 Copyright:
+      <a class="text-dark" href="{{route('index')}}">Grand-Theft-Data.com</a>
+    </div>
+  </footer>
 </body>
 </html>

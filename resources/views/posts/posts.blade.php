@@ -25,8 +25,10 @@
                     
                 </div>
                 <div class="card-body d-flex justify-content-between">
-                    {{$post->description}}
-                    <a href="{{ route('posts.show', $post->id) }}">Accéder au post</a>
+                    <p class="w-100">
+                        {{$post->description}}
+                        <a href="{{ route('posts.show', $post->id) }}" class="ms-3">Accéder au post</a>
+                    </p>
                 </div>
             </div>
 
