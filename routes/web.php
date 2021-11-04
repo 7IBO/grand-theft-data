@@ -26,3 +26,5 @@ Route::post('register', [\App\Http\Controllers\Auth\RegisterController::class, '
 Route::get('test', function () {
     return view('index');
 });
+Route::get('posts', [\App\Http\Controllers\PostController::class, 'index'])->name('posts');
+Route::get('posts/create', [\App\Http\Controllers\PostController::class, 'create'])->name('post.create');
