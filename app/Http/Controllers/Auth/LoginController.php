@@ -17,7 +17,7 @@ class LoginController extends Controller
         if ($user) {
             if (password_verify($request->password, $user->password)) {
                 \Auth::loginUsingId($user->id);
-                return route('index');
+                return redirect()->route('index');
             } else {
                 return redirect()->back()->with('error', 'Email et/ou mot de passe incorrect !');
             }

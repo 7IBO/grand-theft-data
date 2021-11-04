@@ -26,7 +26,7 @@
                 </div>
             </div>
 
-            <div class="d-flex justify-content-end">
+            <div class="d-flex align-items-end flex-column">
                 @foreach($post->comments->slice(0, 3) as $comment)
                     <div class="col-5 mt-2">
                         <div class="card">
