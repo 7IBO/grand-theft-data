@@ -26,6 +26,7 @@
             <thead>
                 <tr>
                     <th>Nom</th>
+                    <th>Pokemon</th>
                     <th>Ami depuis ...</th>
                 </tr>
             </thead>
@@ -43,11 +44,13 @@
                     @if ($friend->requester_id==\Auth::user()->id)
                         <tr>
                             <th>{{$friend->addressee->first_name}} {{$friend->addressee->last_name}}</th>
+                            <th>{{$friend->addressee->pokemon ? $friend->addressee->pokemon->name :''}}</th>
                             <th>{{$friend->accepted_at}}</th>
                         </tr>
                     @else
                         <tr>
                             <th>{{$friend->requester->first_name}} {{$friend->requester->last_name}}</th>
+                            <th>{{$friend->requester->pokemon ? $friend->requester->pokemon->name :''}}</th>
                             <th>{{$friend->accepted_at}}</th>
                         </tr>
                     @endif

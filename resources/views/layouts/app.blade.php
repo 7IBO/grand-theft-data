@@ -51,7 +51,9 @@
                 <input type="submit" class="nav-link bg-transparent" style="border: none;" value="Déconnexion"/>
               </li>
             </form>
+            <span class="navbar-text">Favori : {{\Auth::user()->pokemon ? \Auth::user()->pokemon->name :''}}</span>
           @endif
+          
         </ul>
         <form class="d-flex">
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
